@@ -11,4 +11,5 @@ urlpatterns = [
     path("", views.car_list, name="car_list"),
     path("rent/<int:car_id>/", views.rent_car, name="rent_car"),
     path("api/", include(router.urls)),
+    path("register/", register, name="register"),
 ]
