@@ -27,3 +27,24 @@ def rent_car(request, car_id):
 
     return render(request, "myapp/rent_car.html", {"form": form, "car": car})
 
+from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from .models import Car, Rental, Customer
+from .serializers import CarSerializer, RentalSerializer, CustomerSerializer
+
+class CarViewSet(viewsets.ModelViewSet):
+    queryset = Car.objects.all()
+    serializer_class = CarSerializer
+    permission_classes = [IsAuthenticated]
+
+class CustomerViewSet(viewsets.ModelViewSet):
+    queryset = Customer.objects.all()
+    serializer_class = CustomerSerializer
+    permission_classes = [IsAuthenticated]
+
+class RentalViewSet(viewsets.ModelViewSet):
+    queryset = Rental.objects.all()
+    serializer_class = RentalSerializer
+    permission_classes = [IsAuthenticated]
+
